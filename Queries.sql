@@ -4,15 +4,15 @@ that have had employees assigned within the past six months (i.e., 180 days).
 Update all completed projects that have had employees assigned in the past 180 days, 
 to increase the total cost by 7%. Show the update statement and the content of the project table before and after the update.*/
 
-PDATE Project
+UPDATE Project
 SET Total_Cost = Total_Cost * 1.07
 WHERE Proj_Number IN (SELECT a.Proj_Number pj
-					  FROM Assignment a
-					  WHERE SYSDATE - a.Date_Assigned <= 180
-MINUS
-SELECT a.Proj_Number
-FROM Assignment a
-WHERE a.Date_Ended IS NULL);
+		      FROM Assignment a
+		      WHERE SYSDATE - a.Date_Assigned <= 180
+		      MINUS
+                      SELECT a.Proj_Number
+                      FROM Assignment a
+                      WHERE a.Date_Ended IS NULL);
 
 --Query 2--
 /*Due to a recent re-organization, the company needs a list that shows who supervises who. 
